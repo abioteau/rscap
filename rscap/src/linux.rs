@@ -99,9 +99,9 @@ pub(crate) const TPACKET_ALIGNMENT: usize = 16;
 #[repr(C)]
 #[allow(non_camel_case_types)]
 pub(crate) struct tpacket_rollover_stats {
-    pub tp_all: u64,
-    pub tp_huge: u64,
-    pub tp_failed: u64,
+    pub tp_all: libc::__u64,
+    pub tp_huge: libc::__u64,
+    pub tp_failed: libc::__u64,
 }
 */
 
@@ -110,11 +110,11 @@ pub(crate) struct tpacket_rollover_stats {
 #[allow(non_camel_case_types)]
 #[derive(Clone, Copy)]
 pub(crate) struct tpacket_hdr_v1 {
-    pub block_status: u32,
-    pub num_pkts: u32,
-    pub offset_to_first_pkt: u32,
-    pub blk_len: u32,
-    pub seq_num: u64,
+    pub block_status: libc::__u32,
+    pub num_pkts: libc::__u32,
+    pub offset_to_first_pkt: libc::__u32,
+    pub blk_len: libc::__u32,
+    pub seq_num: libc::__u64,
     pub ts_first_pkt: tpacket_bd_ts,
     pub ts_last_pkt: tpacket_bd_ts,
 }
@@ -134,11 +134,11 @@ pub(crate) enum tpacket_versions {
 #[allow(non_camel_case_types)]
 pub(crate) struct fanout_args {
     #[cfg(target_endian = "little")]
-    pub id: u16,
-    pub type_flags: u16,
+    pub id: libc::__u16,
+    pub type_flags: libc::__u16,
     #[cfg(target_endian = "big")]
-    pub id: u16,
-    pub max_num_members: u32,
+    pub id: libc::__u16,
+    pub max_num_members: libc::__u32,
 }
 
 
@@ -154,13 +154,13 @@ pub(crate) struct sockaddr_pkt {
 #[repr(C)]
 #[allow(non_camel_case_types)]
 pub(crate) struct tpacket_auxdata {
-    pub tp_status: u32,
-    pub tp_len: u32,
-    pub tp_snaplen: u32,
-    pub tp_mac: u16,
-    pub tp_net: u16,
-    pub tp_vlan_tci: u16,
-    pub tp_vlan_tpid: u16,
+    pub tp_status: libc::__u32,
+    pub tp_len: libc::__u32,
+    pub tp_snaplen: libc::__u32,
+    pub tp_mac: libc::__u16,
+    pub tp_net: libc::__u16,
+    pub tp_vlan_tci: libc::__u16,
+    pub tp_vlan_tpid: libc::__u16,
 }
 
 #[repr(C)]
@@ -179,26 +179,26 @@ pub(crate) struct tpacket_hdr {
 #[repr(C)]
 #[allow(non_camel_case_types)]
 pub(crate) struct tpacket_hdr_variant1 {
-    pub tp_rxhash: u32,
-    pub tp_vlan_tci: u32,
-    pub tp_vlan_tpid: u16,
-    pub tp_padding: u16,
+    pub tp_rxhash: libc::__u32,
+    pub tp_vlan_tci: libc::__u32,
+    pub tp_vlan_tpid: libc::__u16,
+    pub tp_padding: libc::__u16,
 }
 
 /*
 #[repr(C)]
 #[allow(non_camel_case_types)]
 pub(crate) struct tpacket2_hdr {
-    pub tp_status: u32,
-    pub tp_len: u32,
-    pub tp_snaplen: u32,
-    pub tp_mac: u16,
-    pub tp_net: u16,
-    pub tp_sec: u32,
-    pub tp_nsec: u32,
-    pub tp_vlan_tci: u16,
-    pub tp_vlan_tpid: u16,
-    pub tp_padding: [u8; 4],
+    pub tp_status: libc::__u32,
+    pub tp_len: libc::__u32,
+    pub tp_snaplen: libc::__u32,
+    pub tp_mac: libc::__u16,
+    pub tp_net: libc::__u16,
+    pub tp_sec: libc::__u32,
+    pub tp_nsec: libc::__u32,
+    pub tp_vlan_tci: libc::__u16,
+    pub tp_vlan_tpid: libc::__u16,
+    pub tp_padding: [libc::__u8; 4],
 }
 */
 
@@ -245,16 +245,16 @@ pub(crate) struct tpacket_stats_v3 {
 #[repr(C)]
 #[allow(non_camel_case_types)]
 pub(crate) struct tpacket3_hdr {
-    pub tp_next_offset: u32,
-    pub tp_sec: u32,
-    pub tp_nsec: u32,
-    pub tp_snaplen: u32,
-    pub tp_len: u32,
-    pub tp_status: u32,
-    pub tp_mac: u16,
-    pub tp_net: u16,
+    pub tp_next_offset: libc::__u32,
+    pub tp_sec: libc::__u32,
+    pub tp_nsec: libc::__u32,
+    pub tp_snaplen: libc::__u32,
+    pub tp_len: libc::__u32,
+    pub tp_status: libc::__u32,
+    pub tp_mac: libc::__u16,
+    pub tp_net: libc::__u16,
     pub hv1: tpacket_hdr_variant1,
-    pub tp_padding: [u8; 8],
+    pub tp_padding: [libc::__u8; 8],
 }
 
 #[repr(C)]
@@ -283,8 +283,8 @@ pub(crate) union tpacket_bd_header_u {
 #[repr(C)]
 #[allow(non_camel_case_types)]
 pub(crate) struct tpacket_block_desc {
-    pub version: u32,
-    pub offset_to_priv: u32,
+    pub version: libc::__u32,
+    pub offset_to_priv: libc::__u32,
     pub hdr: tpacket_bd_header_u,
 }
 
