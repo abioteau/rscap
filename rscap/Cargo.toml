@@ -44,6 +44,7 @@ bitflags = { version = "2.6.0" }
 libc = { version = "0.2" }
 once_cell = { version = "1.19" }
 pkts-common = { version = "0.1.0" }
+[target.'cfg(windows)'.dependencies]
 windows-sys = { version = "0.59", features = ["Win32_Networking_WinSock", "Win32_NetworkManagement_IpHelper", "Win32_System_IO", "Win32_System_Kernel", "Win32_System_LibraryLoader", "Win32_System_Threading"] }
 
 async-io = { version = "2.3.4", optional = true }
