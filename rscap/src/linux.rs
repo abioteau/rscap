@@ -202,6 +202,7 @@ pub(crate) struct tpacket2_hdr {
 }
 */
 
+/*
 #[repr(C)]
 #[allow(non_camel_case_types)]
 #[derive(Clone, Copy)]
@@ -211,6 +212,7 @@ pub(crate) struct tpacket_req {
     pub tp_frame_size: libc::c_uint,
     pub tp_frame_nr: libc::c_uint,
 }
+*/
 
 #[repr(C)]
 #[allow(non_camel_case_types)]

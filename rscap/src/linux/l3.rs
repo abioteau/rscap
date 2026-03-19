@@ -512,7 +512,7 @@ impl L3Socket {
                 libc::SOL_PACKET,
                 crate::linux::PACKET_TX_RING,
                 ptr::addr_of!(req_tx) as *const libc::c_void,
-                mem::size_of::<crate::linux::tpacket_req>() as u32,
+                mem::size_of_val(&req_tx) as u32,
             ) != 0
         } {
             return Err(io::Error::last_os_error());
@@ -548,7 +548,7 @@ impl L3Socket {
                 libc::SOL_PACKET,
                 crate::linux::PACKET_RX_RING,
                 ptr::addr_of!(req_rx) as *const libc::c_void,
-                mem::size_of::<crate::linux::tpacket_req>() as u32,
+                mem::size_of_val(&req_rx) as u32,
             ) != 0
         } {
             return Err(io::Error::last_os_error());
@@ -604,6 +604,7 @@ impl L3Socket {
     ) -> io::Result<L3MappedSocket> {
         self.set_tpacket_v3_opt()?;
         self.set_rx_ring_opt(config, timeout, reserved)?;
+        self.set_tx_ring_opt(config)?;
         let mapping = self.mmap_socket(config, true)?;
 
         let rx_ring = unsafe {
